@@ -1,9 +1,10 @@
-def rev(sentence):
-    words = sentence.split()
-    revSentence = ' '.join(reversed(words))
-    return revSentence
-
-
-a = input()
-result = rev(a)
+def rev(i):
+    sentence = ''
+    i = i[-1::-1]
+    for j in i:
+        sentence = sentence + j 
+    print(sentence)
+    
+w=input()
+result=rev(w)
 print(result)

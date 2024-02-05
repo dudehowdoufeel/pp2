@@ -1,10 +1,8 @@
-def poli(n):
-   
-    a = [c for c in n] #
-    return a == a[::-1]
-
-a= input()
-if poli(a):
-    print("YES")
-else:
-    print("NO")
+def poli(s):
+    if s==s[-1::-1]:
+        return True
+    return False
+    
+a=input()
+result=poli(a)
+print(result)
