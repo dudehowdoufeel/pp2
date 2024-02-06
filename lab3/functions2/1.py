@@ -1,7 +1,3 @@
-def more55(movie_list):
- 
-    return [movie["imdb"] > 5.5 for movie in movies]
-
 movies = [
 {
 "name": "Usual Suspects", 
@@ -79,6 +75,10 @@ movies = [
 "category": "Romance"
 }
 ]
+
+def more55(movie_list):
+ 
+    return [movie["imdb"] > 5.5 for movie in movies]
 
 result = more55(movies)
 print(result)

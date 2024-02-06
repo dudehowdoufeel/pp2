@@ -1,6 +1,3 @@
-def score(movie_list):
-    return [movie for movie in movies if movie["imdb"] > 5.5]
-
 movies = [
 {
 "name": "Usual Suspects", 
@@ -78,6 +75,10 @@ movies = [
 "category": "Romance"
 }
 ]
+
+def score(movie_list):
+    return [movie for movie in movies if movie["imdb"] > 5.5]
+
 
 scorem = score(movies)
 for movie in scorem:
