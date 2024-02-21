@@ -1,6 +1,6 @@
 import json
 
-data =open('data.json')
+data = open("data.json")
 s = data.read()
 data.close()
 d = json.loads(s)
