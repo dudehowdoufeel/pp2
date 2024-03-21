@@ -7,3 +7,5 @@ with open(r'C:\Users\ASUS\Desktop\pp2\lab5\a.txt', 'r', encoding='utf-8') as fil
 
 match = re.findall(r"a(bb|bbb)", g)
 print(match)
+
+#a{2,3}

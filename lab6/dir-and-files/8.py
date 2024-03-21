@@ -6,3 +6,6 @@ def delete(path):
         print("File deleted.")
     else:
         print("File does not exist or is not accessible.")
+
+
+

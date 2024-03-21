@@ -14,3 +14,4 @@ for i in imdata:
     speed = i["l1PhysIf"]["attributes"]["speed"]
     mtu = i["l1PhysIf"]["attributes"]["mtu"]
     print(f"{dn:50} {descr:20}{speed:14}{mtu:6} ")
+   
