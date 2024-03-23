@@ -6,8 +6,8 @@ screen = pygame.display.set_mode((800, 600))
 white = (255, 255, 255)
 red = (255, 0, 0)
 
-x = 50
-y = 50
+x = 25
+y = 25
 
 done = False
 
@@ -32,5 +32,6 @@ while not done:
 
     screen.fill(white)
     pygame.draw.circle(screen, red, (x, y), 25)
+    #pygame.draw.rect(screen, red, (0,0,50,50))
     pygame.display.flip()
     pygame.time.delay(60)
