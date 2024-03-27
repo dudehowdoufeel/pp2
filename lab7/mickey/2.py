@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 
-screen =  pygame.display.set_mode((800, 600))
+screen =  pygame.display.set_mode((300, 450))
 
 theNeighbourhood = [
     r"C:\Users\ASUS\Desktop\pp2\lab7\mickey\music\The Neighbourhood - Compass.mp3",

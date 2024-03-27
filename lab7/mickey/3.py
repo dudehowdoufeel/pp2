@@ -6,6 +6,8 @@ screen = pygame.display.set_mode((800, 600))
 white = (255, 255, 255)
 red = (255, 0, 0)
 
+pygame.mixer.music.load(r"C:\Users\ASUS\Desktop\pp2\lab7\mickey\zvuk-najatiya-na-knopku.mp3")
+
 x = 25
 y = 25
 
@@ -19,12 +21,16 @@ while not done:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_RIGHT]:
         x += 20
+        pygame.mixer.music.play()
     if keys[pygame.K_LEFT]:
         x -= 20
+        pygame.mixer.music.play()
     if keys[pygame.K_UP]:
         y -= 20
+        pygame.mixer.music.play()
     if keys[pygame.K_DOWN]:
         y += 20
+        pygame.mixer.music.play()
 
 
     x = max(25, min(x, 775)) # x не будет меньше 25 (левая граница экрана) и не будет больше 800 - 25 (правая граница экрана)
