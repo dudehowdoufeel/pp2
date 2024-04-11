@@ -9,10 +9,10 @@ pygame.init()
 FSP = 60
 FramePerSec = pygame.time.Clock()
 
-backgroundSound = pygame.mixer.music.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\Lecture_G2_Week11_racer_resources_background.wav")
+backgroundSound = pygame.mixer.music.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\Lecture_G2_Week11_racer_resources_background.wav")
 backgroundSound = pygame.mixer.music.play(-1)
 
-background = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\AnimatedStreet.png")
+background = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\AnimatedStreet.png")
 screen = pygame.display.set_mode((400,600))
 
 speed = 5
@@ -30,7 +30,7 @@ game_over = font.render("Game Over", True, (255,255,255))
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\Player.png")
+        self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\Player.png")
         self.rect = self.image.get_rect()
         self.rect.center = (190, 546)
 
@@ -61,7 +61,7 @@ class Player(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\Enemy.png")
+        self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\Enemy.png")
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, 360), 0)
     def move(self):
@@ -76,11 +76,11 @@ class Coins(pygame.sprite.Sprite):
         super().__init__()
         self.value = value
         if self.value == 5:
-            self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\5coin.png").convert_alpha()
+            self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\5coin.png").convert_alpha()
         elif self.value == 10:
-            self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\10coin.png").convert_alpha()
+            self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\10coin.png").convert_alpha()
         elif self.value == 25:
-            self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\25coin.png").convert_alpha()
+            self.image = pygame.image.load(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\25coin.png").convert_alpha()
         else:
             raise ValueError("Invalid coin value")
         self.rect = self.image.get_rect()
@@ -154,9 +154,9 @@ while not done:
 
     if pygame.sprite.spritecollideany(p1, enemies):
         backgroundSound = pygame.mixer.music.stop()
-        crash = pygame.mixer.Sound(r"C:\Users\ASUS\Desktop\pp2\lab8\racer\resources\Lecture_G2_Week11_racer_resources_crash.wav")
+        crash = pygame.mixer.Sound(r"C:\Users\ASUS\Desktop\pp2\lab8_9\racer\resources\Lecture_G2_Week11_racer_resources_crash.wav")
         crash.play(1)
-        time.sleep(1)
+        
         
 
         screen.fill((255,0,0))
@@ -165,6 +165,8 @@ while not done:
         screen.blit(scores, (70,350))
         screen.blit(game_over, (50, 250))
         pygame.display.update()
+        time.sleep(1)
+        done = True
         
 
 

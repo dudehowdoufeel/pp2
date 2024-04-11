@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 
 pygame.init()
 
@@ -44,6 +45,7 @@ class Snake:
         self.body = [Point(10, 11), Point(10, 12), Point(10, 13)]
         self.dx = 1
         self.dy = 0
+        self.food_count = 0
 
     def move(self):
         for i in range(len(self.body) - 1, 0, -1):
@@ -63,15 +65,22 @@ class Snake:
         head = self.body[0]
         if head.x == food.pos.x and head.y == food.pos.y:
             self.body.append(Point(head.x, head.y))
+            self.food_count += 1
+            return True
+        return False
+
+    def check_boundary_collision(self):
+        head = self.body[0]
+        if head.x < 0 or head.x >= WIDTH // CELL or head.y < 0 or head.y >= HEIGHT // CELL:
             return True
         return False
 
 class Food:
     def __init__(self):
-        self.pos = Point(15, 15)
+        self.pos = Point(random.randint(0, WIDTH // CELL - 1), random.randint(0, HEIGHT // CELL - 1))
 
     def move(self):
-        pass
+        self.pos = Point(random.randint(0, WIDTH // CELL - 1), random.randint(0, HEIGHT // CELL - 1))
 
     def draw(self):
         pygame.draw.rect(screen, colorGREEN, (self.pos.x * CELL, self.pos.y * CELL, CELL, CELL))
@@ -80,6 +89,9 @@ done = False
 
 snake = Snake()
 food = Food()
+
+speed_snake = 1
+food_counter = 0
 
 while not done:
     for event in pygame.event.get():
@@ -103,12 +115,22 @@ while not done:
     draw_grid_chess()
 
     snake.move()
+    
+    if snake.check_boundary_collision():
+        print("Game Over - Snake hit the boundaries!")
+        done = True
+
     snake.draw()
 
     food.draw()
 
     if snake.check_collision(food):
         print("Got food!")
-    
+        food_counter += 1
+        food.move()
+        if food_counter % 6 == 0:
+            speed_snake += 0.5
+            clock.tick(FPS + speed_snake)
+
     pygame.display.flip()
-    clock.tick(FPS)
+    clock.tick(FPS + speed_snake)

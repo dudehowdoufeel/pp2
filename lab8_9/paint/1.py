@@ -35,7 +35,7 @@ currY = 0
 def calculate_rect(x1, y1, x2, y2):
     return pygame.Rect(min(x1, x2), min(y1, y2), abs(x1 - x2), abs(y1 - y2))
 
-def calculate_rhombus_points(x1, y1, x2, y2):
+def calculate_rhombus(x1, y1, x2, y2):
     # Calculate the coordinates of the rhombus vertices
     x_mid = (x1 + x2) // 2
     y_mid = (y1 + y2) // 2
@@ -50,7 +50,7 @@ def calculate_square(x1, y1, x2, y2):
     y2 = y1 + size if y2 > y1 else y1 - size
     return pygame.Rect(x1, y1, size, size)
 
-def calculate_circle_radius(x1, y1, x2, y2):
+def calculate_circle(x1, y1, x2, y2):
     return int(((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5)
 
 def calculate_equilateral_triangle(x1, y1, x2, y2):
@@ -64,7 +64,7 @@ def calculate_equilateral_triangle(x1, y1, x2, y2):
         (x1, y1)
     ]
 
-def calculate_triangle(x1, y1, x2, y2):
+def calculate_right_triangle(x1, y1, x2, y2):
     return [(x1, y1), (x2, y1), (x2, y2)]
 
 def draw_shape(x1, y1, x2, y2, shape):
@@ -73,13 +73,13 @@ def draw_shape(x1, y1, x2, y2, shape):
     elif shape == "square":
         pygame.draw.rect(screen, current_color, calculate_square(x1, y1, x2, y2), 2)
     elif shape == "rhombus":
-        points = calculate_rhombus_points(x1, y1, x2, y2)
+        points = calculate_rhombus(x1, y1, x2, y2)
         pygame.draw.polygon(screen, current_color, points, 2)
     elif shape == "circle":
-        radius = calculate_circle_radius(x1, y1, x2, y2)
+        radius = calculate_circle(x1, y1, x2, y2)
         pygame.draw.circle(screen, current_color, (x1, y1), radius, 2)
     elif shape == "right triangle":
-        points = calculate_triangle(x1, y1, x2, y2)
+        points = calculate_right_triangle(x1, y1, x2, y2)
         pygame.draw.polygon(screen, current_color, points, 2)
     elif shape == "equilateral triangle":
         points = calculate_equilateral_triangle(x1, y1, x2, y2)
@@ -167,7 +167,7 @@ while not done:
         if not eraser:
             draw_shape(prevX, prevY, currX, currY, current_shape)
         else:
-            pygame.draw.circle(screen, colorBLACK, (currX, currY), thickness)  # Draw white circle to simulate eraser
+            pygame.draw.circle(screen, colorBLACK, (currX, currY), thickness)
             base_layer.blit(screen, (0, 0))
     
     draw_palette()
