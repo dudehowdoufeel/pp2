@@ -1,7 +1,6 @@
 import csv
 import psycopg2
 
-
 conn = psycopg2.connect(
     host='localhost', 
     dbname='phonebook', 
@@ -22,36 +21,38 @@ cur.execute("""CREATE TABLE IF NOT EXISTS PhoneBook (
 """)
 
 
-def update(sn, mode, newv):
+def update(surname, mode, new_name):
     cur.execute("""UPDATE PhoneBook
     SET {} = '{}'
     WHERE surname = '{}'
-    """.format(mode,newv,sn))
+    """.format(mode,new_name,surname))
 
-def delete(sn):
+def delete(surname):
     cur.execute("""DELETE FROM PhoneBook
     WHERE surname='{}'
-    """.format(sn))
+    """.format(surname))
 
-#INSERTING DATA--------------------------
-
+#insert
 mode="enter"
 while True:
     print("Type 'enter' if you want to add more data and type 'stop' to break")
     mode=input()
     if mode=="stop":
         break
-    mytuple=[]
+    new=[]
     print("enter surname:")
-    mytuple.append(input())
+    new.append(input())
     print("enter name:")
-    mytuple.append(input())
+    new.append(input())
     print("enter number:")
-    mytuple.append(input())
-    mytuple=tuple(mytuple)
+    new.append(input())
+    new=tuple(new)
     cur.execute("""INSERT INTO PhoneBook (surname, name ,number) VALUES
     {};
-    """.format(mytuple))
+    """.format(new))
+
+
+#insert from csv
 
 while True:
     print("Want to insert data from csv file? yes/no:")
@@ -69,7 +70,8 @@ while True:
     else:
         print("Invalid input. Please enter 'yes' or 'no'.")
 
-#UPDATING DATA---------
+#update
+
 while True:
     print("Type 'update' to update some data or 'stop' to break")
     mode=input()
@@ -78,24 +80,24 @@ while True:
     cur.execute("""SELECT * FROM PhoneBook""")
     print(cur.fetchall())
     print("Enter surname")
-    idtochange=input()
+    changes=input()
     print("What you want to change? name/number")
     mode=input()
     print("Enter new name/number")
-    newvalue=input()
-    update(idtochange, mode, newvalue)
+    new_value=input()
+    update(changes, mode, new_value)
 
-#DELETING DATA-----------
+#delete
 while True:
-    print("want to delete some data? yes/no")
+    print("Want to delete some data? yes/no")
     mode=input()
     if mode=="no":
         break
     cur.execute("""SELECT * FROM PhoneBook""")
     print(cur.fetchall())
     print("Enter surname")
-    idtodelete=input()
-    delete(idtodelete)
+    row_to_delete=input()
+    delete(row_to_delete)
 
 
 conn.commit()
